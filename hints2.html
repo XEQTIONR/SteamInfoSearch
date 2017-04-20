@@ -9,7 +9,16 @@ function showHint(str) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
+                //document.getElementById("txtHint").innerHTML = this.responseText;
+                var obj = JSON.parse(this.responseText);
+
+                document.getElementById("sid").innerHTML = obj.steamid;
+                document.getElementById("pname").innerHTML = obj.personaname;
+                document.getElementById("vis").innerHTML = obj.communityvisibilitystate;
+                document.getElementById("image").src=obj.avatarmedium;
+
+
+
             }
         };
         xmlhttp.open("GET", "gethint2.php?q=" + str, true);
@@ -25,5 +34,11 @@ function showHint(str) {
 First name: <input type="text" onkeyup="showHint(this.value)">
 </form>
 <p>Suggestions: <span id="txtHint"></span></p>
+<div id="badge">
+  STEAM ID : <span id="sid"></span> <br>
+  personaname : <span id="pname"></span> <br>
+  visibility status : <span id="vis"></span> <br>
+  <img id="image" src="">
+</div>
 </body>
 </html>

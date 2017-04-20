@@ -1,5 +1,10 @@
 <?php
-
+/*
+@author Ishtehar Hussain
+@date March 19, 2017
+@notes gets information contents for a particular steamid
+*/
+  
   $json = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=FD7A4010D36B3ED66C98799206F51991&steamids=76561198018132926', TRUE);
   //$data = json_decode($json);
   //echo $data->response.players->personaname;
@@ -9,13 +14,31 @@
       new RecursiveArrayIterator(json_decode($json, TRUE)),
       RecursiveIteratorIterator::SELF_FIRST);
 
+      $gamer_attributes = array('steamid','personaname','communityvisibilitystate','avatarmedium');
+
   foreach ($jsonIterator as $key => $val) {
       if(is_array($val)) {
           //echo "$key:\n";
-      } else if($key=='personaname') {
-          echo "$key => $val\n";
+      } else if(in_array($key,$gamer_attributes) ){
+          $result[$key]=$val;
+        /*  switch ($key) {
+            case 'avatarmedium':
+            echo '<img src="' .htmlspecialchars($val). '"> <br>';
+
+              # code...
+              break;
+            default:
+              echo "$key is $result[$key]".'<br>';
+              # code...
+              break;
+          }*/
+
+
       }
+
+
   }
+  echo json_encode($result);
 
 
 
