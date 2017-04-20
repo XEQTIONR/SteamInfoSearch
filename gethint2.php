@@ -4,8 +4,13 @@
 @date March 19, 2017
 @notes gets information contents for a particular steamid
 */
-  
-  $json = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=FD7A4010D36B3ED66C98799206F51991&steamids=76561198018132926', TRUE);
+  $base = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=FD7A4010D36B3ED66C98799206F51991&steamids=';
+  $q = $_GET["q"];
+  $url = $base.$q;
+  //$json = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=FD7A4010D36B3ED66C98799206F51991&steamids=76561198018132926', TRUE);
+  $json = file_get_contents($url, TRUE);
+
+  $result["q_val"] = $q;
   //$data = json_decode($json);
   //echo $data->response.players->personaname;
   //echo $data['response']['players'][0]['personaname'];

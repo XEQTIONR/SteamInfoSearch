@@ -5,7 +5,7 @@ function showHint(str) {
     if (str.length == 0) {
         document.getElementById("txtHint").innerHTML = "";
         return;
-    } else {
+    } else if(str.length == 17){
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -16,7 +16,7 @@ function showHint(str) {
                 document.getElementById("pname").innerHTML = obj.personaname;
                 document.getElementById("vis").innerHTML = obj.communityvisibilitystate;
                 document.getElementById("image").src=obj.avatarmedium;
-
+                document.getElementById("q_val").innerHTML = obj.q_val;
 
 
             }
@@ -38,6 +38,7 @@ First name: <input type="text" onkeyup="showHint(this.value)">
   STEAM ID : <span id="sid"></span> <br>
   personaname : <span id="pname"></span> <br>
   visibility status : <span id="vis"></span> <br>
+  q: <span id="q_val"></span><br>
   <img id="image" src="">
 </div>
 </body>
