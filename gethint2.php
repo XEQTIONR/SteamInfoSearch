@@ -4,7 +4,10 @@
 @date March 19, 2017
 @notes gets information contents for a particular steamid
 */
-  $base = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=FD7A4010D36B3ED66C98799206F51991&steamids=';
+  require('steam_key.php');
+
+  $base = "{$IsteamURL}{$steamKey}{$suffix}"; // from steam_key.php
+  //$base = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=FD7A4010D36B3ED66C98799206F51991&steamids=';
   $q = $_GET["q"];
   $url = $base.$q;
   //$json = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=FD7A4010D36B3ED66C98799206F51991&steamids=76561198018132926', TRUE);
